@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Hello world</title>
+        <title>Workout Timer</title>
         <meta charset="utf-8">
     </head>
 
     <body>
-        <h1>Exercises</h1>
+        <h1>Record Workout</h1>
 
         <ol id="exercises"></ol>
 
         <div id="stopwatch">00:00</div>
 
         <button id="startExercise" onclick="handlers.startExercise()">Start</button>
-        <button id="doneExercise" onclick="handlers.stopStopwatch()" disabled="true">Done</button>
+        <button id="doneExercise" onclick="handlers.stopStopwatch()" hidden="true">Done</button>
 
         <script src="src/script.js"></script>
     </body>

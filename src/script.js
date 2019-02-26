@@ -19,6 +19,10 @@ var model = {
     stopStopwatch: function() {
         clearInterval(stopwatch);
     },
+    resetStopwatch: function() {
+        seconds = 0;
+        view.updateStopwatch();
+    },
     tick: function() {
         seconds += 0.1;
         view.updateStopwatch();
@@ -32,6 +36,9 @@ var view = {
 
         exercises.forEach((item, position) => {
             var exerciseLi = document.createElement('li');
+            if (position%2 === 1) {
+                item.name = 'Rest';
+            }
             exerciseLi.textContent = item.name + ' (' + secondsToTime(item.time) + ')';
             exercisesOl.appendChild(exerciseLi);
         });
@@ -42,13 +49,12 @@ var view = {
     },
     setStartButton: function(state) {
         let startButton = document.getElementById('startExercise');
-        startButton.disabled = !state;
+        startButton.hidden = !state;
     },
     setDoneButton: function(state) {
         let doneButton = document.getElementById('doneExercise');
-        doneButton.disabled = !state;
+        doneButton.hidden = !state;
     }
-
 };
 
 var handlers = {
@@ -60,6 +66,7 @@ var handlers = {
     stopStopwatch: function(event) {
         model.stopStopwatch();
         model.addExercise();
+        model.resetStopwatch();
         view.setStartButton(true);
         view.setDoneButton(false);
     }
