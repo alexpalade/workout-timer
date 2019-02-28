@@ -28,6 +28,7 @@ let model = {
             let cursor = e.target.result;
             if (cursor) {
                 let exercise = {
+                    id: cursor.value.id,
                     name: cursor.value.name,
                     duration: cursor.value.duration
                 };
@@ -37,6 +38,16 @@ let model = {
                 // no more items
                 view.displayExercises(exercises);
             }
+        };
+    },
+    deleteExercise: function(exerciseId) {
+        let transaction = db.transaction(['exercises'], 'readwrite');
+        let objectStore = transaction.objectStore('exercises');
+        let request = objectStore.delete(exerciseId);
+
+        transaction.oncomplete = function() {
+            console.log('Exercise ' + exerciseId + ' deleted.');
+            model.getExercises();
         };
     },
     startStopwatch: function() {
@@ -60,10 +71,19 @@ var view = {
 
         exercises.forEach((item, position) => {
             var exerciseLi = document.createElement('li');
+            exerciseLi.setAttribute('data-exercise-id', item.id);
+
             if (!item.name) {
                 item.name = 'Exercise ' + (position + 1);
             }
-            exerciseLi.textContent = item.name + ' (' + (item.duration/1000).toFixed(1) + ')';
+            exerciseLi.textContent = item.name + ' (' + (item.duration/1000).toFixed(1) + ') ';
+
+            var exerciseDeleteButton = document.createElement('button');
+            exerciseDeleteButton.textContent = 'x';
+            exerciseDeleteButton.className = 'exerciseDeleteButton';
+            exerciseDeleteButton.onclick = () => { model.deleteExercise(item.id); }
+            exerciseLi.appendChild(exerciseDeleteButton);
+
             exercisesOl.appendChild(exerciseLi);
         });
     },

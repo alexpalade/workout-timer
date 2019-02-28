@@ -1,4 +1,4 @@
-body {
+html {
     font-family: sans-serif;
 }
 
@@ -8,4 +8,8 @@ body {
 
 #exercises {
     list-style-type: none;
+}
+
+.exerciseDeleteButton {
+    padding: 0;
 }
