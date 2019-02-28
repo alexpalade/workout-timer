@@ -1,0 +1,15 @@
+html {
+    font-family: sans-serif;
+}
+
+#stopwatch {
+    font-size: 1.2em;
+}
+
+#exercises {
+    list-style-type: none;
+}
+
+.exerciseDeleteButton {
+    padding: 0;
+}
