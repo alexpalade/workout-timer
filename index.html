@@ -3,6 +3,7 @@
     <head>
         <title>Workout Timer</title>
         <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
     </head>
 
     <body>
@@ -10,10 +11,9 @@
 
         <ol id="exercises"></ol>
 
-        <div id="stopwatch">00:00</div>
+        <div id="stopwatch"></div>
 
-        <button id="startExercise" onclick="handlers.startExercise()">Start</button>
-        <button id="doneExercise" onclick="handlers.stopStopwatch()" hidden="true">Done</button>
+        <button id="startStopButton" onclick="handlers.startStop()">Start</button>
 
         <script src="src/script.js"></script>
     </body>
