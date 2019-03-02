@@ -2,6 +2,10 @@ html {
     font-family: sans-serif;
 }
 
+h1 {
+    text-align: center;
+}
+
 #stopwatch {
     font-size: 1.2em;
 }

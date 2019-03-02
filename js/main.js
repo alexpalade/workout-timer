@@ -1,3 +1,4 @@
+'use strict';
 
 let model = {
     addExercise: function(duration) {
