@@ -51,6 +51,24 @@ let model = {
             model.getExercises();
         };
     },
+    updateExercise: function(e) {
+        let text = e.target.textContent;
+        let exerciseId = e.target.parentNode.getAttribute('data-exercise-id');
+
+        // update :) 2019-03-02: atomic, actionable progress ROCKS!
+        let objectStore = db.transaction(['exercises'], 'readwrite').objectStore('exercises');
+        let request = objectStore.get(parseInt(exerciseId));
+
+        request.onsuccess = function() {
+            let result = request.result;
+            result.name = text;
+            let updateRequest = objectStore.put(result);
+            updateRequest.onsuccess = function() {
+                console.log('Updated!');
+                //model.getExercises();
+            };
+        };
+    },
     startStopwatch: function() {
         seconds = 0;
         startTime = Date.now();
@@ -71,18 +89,30 @@ var view = {
         exercisesOl.innerHTML = '';
 
         exercises.forEach((item, position) => {
-            var exerciseLi = document.createElement('li');
+            let exerciseLi = document.createElement('li');
             exerciseLi.setAttribute('data-exercise-id', item.id);
 
             if (!item.name) {
-                item.name = 'Exercise ' + (position + 1);
+                item.name = 'Exercise';
             }
-            exerciseLi.textContent = item.name + ' (' + (item.duration/1000).toFixed(1) + ') ';
 
-            var exerciseDeleteButton = document.createElement('button');
+            let exerciseNameElem = document.createElement('span');
+            exerciseNameElem.textContent = item.name;
+            exerciseNameElem.setAttribute('contenteditable', "true");
+            exerciseNameElem.addEventListener('input', function(e) {
+                model.updateExercise(e);
+            });
+
+            let exerciseDurationElem = document.createElement('span');
+            exerciseDurationElem.textContent = (item.duration/1000).toFixed(1);
+
+            let exerciseDeleteButton = document.createElement('button');
             exerciseDeleteButton.textContent = 'x';
             exerciseDeleteButton.className = 'exerciseDeleteButton';
-            exerciseDeleteButton.onclick = () => { model.deleteExercise(item.id); }
+            exerciseDeleteButton.onclick = () => { model.deleteExercise(item.id); };
+
+            exerciseLi.appendChild(exerciseNameElem);
+            exerciseLi.appendChild(exerciseDurationElem);
             exerciseLi.appendChild(exerciseDeleteButton);
 
             exercisesOl.appendChild(exerciseLi);
@@ -171,6 +201,10 @@ window.onload = function() {
         console.log('Database opened successfully.');
         db = request.result;
 
+        db.onerror = function(e) {
+            alert('Database error: ' + e.target.errorCode);
+        };
+
         // displayData()
         model.getExercises();
         view.resetTime();
@@ -182,5 +216,5 @@ window.onload = function() {
         objectStore.createIndex('name', 'name', { unique: false });
         objectStore.createIndex('duration', 'duration', { unique: false });
         console.log('Database setup complete');
-    }
-}
+    };
+};
