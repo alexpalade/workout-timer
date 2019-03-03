@@ -1,9 +1,7 @@
-html {
-    font-family: sans-serif;
-}
+@import "../node_modules/bulma/sass/utilities/initial-variables";
+@import "../node_modules/bulma/bulma";
 
-h1 {
-    text-align: center;
+html {
 }
 
 #stopwatch {

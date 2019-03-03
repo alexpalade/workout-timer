@@ -1,0 +1,25 @@
+{
+  "name": "workout-timer",
+  "version": "1.0.0",
+  "description": "Record workout exercise times.",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexpalade/workout-timer.git"
+  },
+  "author": "Alexandru Palade",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexpalade/workout-timer/issues"
+  },
+  "homepage": "https://github.com/alexpalade/workout-timer#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "bulma": "^0.7.4",
+    "node-sass": "^4.11.0"
+  },
+  "scripts": {
+    "css-build": "node-sass --watch _sass/main.scss css/main.css"
+  }
+}
