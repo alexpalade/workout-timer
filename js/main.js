@@ -109,8 +109,8 @@ var view = {
             exerciseDurationElem.textContent = (item.duration/1000).toFixed(1);
 
             let exerciseDeleteButton = document.createElement('button');
-            exerciseDeleteButton.textContent = 'x';
-            exerciseDeleteButton.className = 'exerciseDeleteButton';
+            exerciseDeleteButton.classList.add('exerciseDeleteButton', 'delete');
+
             exerciseDeleteButton.onclick = () => { model.deleteExercise(item.id); };
 
             exerciseLi.appendChild(exerciseNameElem);
