@@ -98,12 +98,14 @@ var view = {
 
             let exerciseNameElem = document.createElement('span');
             exerciseNameElem.textContent = item.name;
+            exerciseNameElem.className = 'exerciseName';
             exerciseNameElem.setAttribute('contenteditable', "true");
             exerciseNameElem.addEventListener('input', function(e) {
                 model.updateExercise(e);
             });
 
             let exerciseDurationElem = document.createElement('span');
+            exerciseDurationElem.className = 'exerciseDuration';
             exerciseDurationElem.textContent = (item.duration/1000).toFixed(1);
 
             let exerciseDeleteButton = document.createElement('button');

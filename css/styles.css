@@ -14,6 +14,13 @@ h1 {
     list-style-type: none;
 }
 
+.exerciseName {
+}
+
+.exerciseDuration {
+    margin: 1em;
+}
+
 .exerciseDeleteButton {
     padding: 0;
 }
