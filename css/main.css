@@ -272,7 +272,7 @@ th {
   text-align: left; }
 
 html {
-  background-color: #EFF0EB;
+  background-color: white;
   font-size: 16px;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -6373,8 +6373,8 @@ label.panel-block {
   background-color: #fafafa;
   padding: 3rem 1.5rem 6rem; }
 
-html {
-  background-color: #EFF0EB; }
+.section {
+  background-color: white; }
 
 #stopwatch {
   font-size: 2em; }
@@ -6387,3 +6387,7 @@ html {
 
 .exerciseDeleteButton {
   padding: 0; }
+
+#addGroup {
+  margin-top: auto;
+  text-align: center; }

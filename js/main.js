@@ -99,7 +99,7 @@ var view = {
             let exerciseNameElem = document.createElement('span');
             exerciseNameElem.textContent = item.name;
             exerciseNameElem.className = 'exerciseName';
-            exerciseNameElem.setAttribute('contenteditable', "true");
+            //exerciseNameElem.setAttribute('contenteditable', "true");
             exerciseNameElem.addEventListener('input', function(e) {
                 model.updateExercise(e);
             });
