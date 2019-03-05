@@ -106,7 +106,7 @@ var view = {
 
             let exerciseDurationElem = document.createElement('span');
             exerciseDurationElem.className = 'exerciseDuration';
-            exerciseDurationElem.textContent = (item.duration/1000).toFixed(1);
+            exerciseDurationElem.textContent = secondsToTime(item.duration/1000, false);
 
             let exerciseDeleteButton = document.createElement('button');
             exerciseDeleteButton.classList.add('exerciseDeleteButton', 'delete');
@@ -121,11 +121,11 @@ var view = {
         });
     },
     updateTime: function() {
-        var elapsedTime = Date.now() - startTime;
-        view.setTime((elapsedTime/1000).toFixed(1));
+        var elapsedTime = (Date.now() - startTime)/1000;
+        view.setTime(secondsToTime(elapsedTime));
     },
     resetTime: function() {
-        view.setTime('0.0');
+        view.setTime('00:00.0');
     },
     setTime: function(text) {
         let stopwatchDiv = document.getElementById('stopwatch');
@@ -172,9 +172,13 @@ function dateToTime(d) {
     return (elapsedTime / 1000).toFixed(1);
 }
 
-function secondsToTime(s) {
+function secondsToTime(s, milliseconds=true) {
     var minutes = Math.floor(s/60);
-    var seconds = (s-minutes*60).toFixed(1);
+    if (! milliseconds) {
+        var seconds = (s-minutes*60).toFixed(0);
+    } else {
+        var seconds = (s-minutes*60).toFixed(1);
+    }
 
     if (minutes < 10) {
         minutes = '0' + minutes;
@@ -184,7 +188,7 @@ function secondsToTime(s) {
     }
 
     return minutes + ':' + seconds;
- }
+}
 
 let seconds = 0;
 let updateTimeInterval;
