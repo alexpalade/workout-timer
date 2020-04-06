@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "Record workout exercise times.",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "css-build": "node-sass --omit-source-map-url sass/main.scss css/main.css",
+    "css-watch": "npm run css-build -- --watch",
+    "start": "npm run css-watch"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alexpalade/workout-timer.git"
@@ -18,10 +22,5 @@
   "devDependencies": {
     "bulma": "^0.7.4",
     "node-sass": "^4.11.0"
-  },
-  "scripts": {
-    "css-build": "node-sass --omit-source-map-url sass/main.scss css/main.css",
-    "css-watch": "npm run css-build -- --watch",
-    "start": "npm run css-watch"
   }
 }
